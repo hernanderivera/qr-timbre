@@ -1,5 +1,5 @@
-import requests
 import socket
+import re
 
 def get_telegram_ip():
     try:
@@ -12,10 +12,14 @@ def get_telegram_ip():
 if __name__ == "__main__":
     current_ip = get_telegram_ip()
     if current_ip:
-        with open("last_ip.txt", "r") as f:
-            last_ip = f.read().strip()
-        
+        try:
+            with open("last_ip.txt", "r") as f:
+                last_ip = f.read().strip()
+        except FileNotFoundError:
+            last_ip = ""
+            
         if current_ip != last_ip:
+            # Actualiza last_ip.txt
             with open("last_ip.txt", "w") as f:
                 f.write(current_ip)
             
@@ -23,7 +27,12 @@ if __name__ == "__main__":
             with open("timbre.php", "r") as f:
                 php_code = f.read()
             
-            new_php_code = php_code.replace(last_ip, current_ip)
+            # Reemplaza la IP en CURLOPT_RESOLVE
+            new_php_code = re.sub(
+                r'CURLOPT_RESOLVE, \["api\.telegram\.org:443:\d+\.\d+\.\d+\.\d+"\]',
+                f'CURLOPT_RESOLVE, ["api.telegram.org:443:{current_ip}"]',
+                php_code
+            )
             
             with open("timbre.php", "w") as f:
                 f.write(new_php_code)
