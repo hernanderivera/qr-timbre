@@ -47,12 +47,6 @@ jobs:
         local-dir: ./
         server-dir: /htdocs/
 
-    - name: Debug IP
-      run: |
-      echo "IP actual: $(cat last_ip.txt)"
-      echo "Contenido de timbre.php:"
-      cat timbre.php | grep "CURLOPT_RESOLVE"
-
     - name: Enviar notificación a Telegram
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
