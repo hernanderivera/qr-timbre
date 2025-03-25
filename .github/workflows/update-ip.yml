@@ -10,18 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-name: Update Telegram IP
-
-on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-jobs:
-  update-ip:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repo
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GH_TOKEN }}
