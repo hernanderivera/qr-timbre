@@ -20,10 +20,8 @@ if __name__ == "__main__":
             
         if current_ip != last_ip:
             # Actualiza last_ip.txt
-            else:
-            print("La IP sigue igual, pero forzamos actualización.")
             with open("last_ip.txt", "w") as f:
-            f.write(current_ip)
+                f.write(current_ip)
             
             # Actualiza timbre.php
             with open("timbre.php", "r") as f:
