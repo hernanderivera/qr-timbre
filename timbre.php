@@ -1,7 +1,7 @@
 
 <?php
-$token = '{{TELEGRAM_TOKEN}}';       // Placeholder para el token
-$chat_id = '{{TELEGRAM_CHAT_ID}}';   // Placeholder para el chat ID
+$token = '7586164341:AAHUG9JEw7pZWfPyKvah726OMZrtkw-Gn_M';       // Placeholder para el token
+$chat_id = '-4644780147';   // Placeholder para el chat ID
 $mensaje = "🔔 ¡Alguien está en la puerta!";
 
 $ch = curl_init();
