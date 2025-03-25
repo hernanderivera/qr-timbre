@@ -28,7 +28,7 @@ jobs:
       run: |
         sed -i "s/{{TELEGRAM_TOKEN}}/${{ secrets.TELEGRAM_TOKEN }}/g" timbre.php
         sed -i "s/{{TELEGRAM_CHAT_ID}}/${{ secrets.TELEGRAM_CHAT_ID }}/g" timbre.php
-
+        
     - name: Commit and push changes
       run: |
         git config --global user.name "GitHub Actions"
@@ -46,6 +46,10 @@ jobs:
         echo "✅ Todo está actualizado."
         fi
 
+    - name: Force PHP file update
+      run: |
+        sed -i "s/api.telegram.org:443:0.0.0.0/api.telegram.org:443:$(cat last_ip.txt)/g" timbre.php
+        
     - name: Upload files via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
