@@ -1,7 +1,7 @@
 
 <?php
-$token = 'TU_TOKEN';
-$chat_id = 'TU_CHAT_ID';
+$token = '7586164341:AAHUG9JEw7pZWfPyKvah726OMZrtkw-Gn_M';
+$chat_id = '-4644780147';
 $mensaje = "🔔 ¡Alguien está en la puerta!";
 
 $ch = curl_init();
