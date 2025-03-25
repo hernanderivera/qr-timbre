@@ -33,17 +33,6 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
-    
-    # Forzar actualización de last_ip.txt
-    date >> last_ip.txt  # Opcional: añade timestamp para cambios forzados
-    
-    if [[ $(git status --porcelain) ]]; then
-      git add -A
-      git commit -m "Actualizar IP y secrets"
-      git push
-    else
-      echo "✅ Todo está actualizado."
-    fi
 
     - name: Force PHP file update
       run: |
