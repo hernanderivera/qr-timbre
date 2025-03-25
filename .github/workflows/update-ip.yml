@@ -28,7 +28,6 @@ jobs:
       run: |
         sed -i "s/{{TELEGRAM_TOKEN}}/${{ secrets.TELEGRAM_TOKEN }}/g" timbre.php
         sed -i "s/{{TELEGRAM_CHAT_ID}}/${{ secrets.TELEGRAM_CHAT_ID }}/g" timbre.php
-        
     - name: Commit and push changes
       run: |
         git config --global user.name "GitHub Actions"
@@ -36,15 +35,15 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
     
     # Forzar actualización de last_ip.txt
-        date >> last_ip.txt  # Opcional: añade timestamp para cambios forzados
+    date >> last_ip.txt  # Opcional: añade timestamp para cambios forzados
     
-        if [[ $(git status --porcelain) ]]; then
-        git add -A
-        git commit -m "Actualizar IP y secrets"
-        git push
-        else
-        echo "✅ Todo está actualizado."
-        fi
+    if [[ $(git status --porcelain) ]]; then
+      git add -A
+      git commit -m "Actualizar IP y secrets"
+      git push
+    else
+      echo "✅ Todo está actualizado."
+    fi
 
     - name: Force PHP file update
       run: |
