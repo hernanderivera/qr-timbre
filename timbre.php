@@ -7,7 +7,7 @@ $mensaje = "🔔 ¡Alguien está en la puerta!";
 $ch = curl_init();
 // Configuración avanzada para resolver el DNS
 curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot{$token}/sendMessage");
-curl_setopt($ch, CURLOPT_RESOLVE, ["api.telegram.org:443:0.0.0.0"]); // El script reemplazará 0.0.0.0
+curl_setopt($ch, CURLOPT_RESOLVE, ["api.telegram.org:443:149.154.167.220"]); // El script reemplazará 0.0.0.0
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
     'chat_id' => $chat_id,
