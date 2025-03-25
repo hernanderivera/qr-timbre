@@ -38,6 +38,10 @@ jobs:
         git commit -m "Actualizar IP y secrets"
         git push
 
+    - name: Force PHP file update
+      run: |
+        sed -i "s/api.telegram.org:443:0.0.0.0/api.telegram.org:443:$(cat last_ip.txt)/g" timbre.php
+
     - name: Upload files via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
