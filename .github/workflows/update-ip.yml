@@ -34,3 +34,11 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
         server-dir: /htdocs/  # Carpeta raíz de InfinityFree (normalmente htdocs o public_html)
+
+    - name: Enviar notificación a Telegram
+      if: ${{ failure() }}
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: "⚠️ Fallo al actualizar IP de Telegram"
